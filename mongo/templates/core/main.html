@@ -1,0 +1,46 @@
+{% extends 'core/index.html' %}
+{% load static %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="post-slider">
+        <h1 class="slide-title">Planes</h1>
+        <hr>  
+        <i class="fa fa-chevron-left prev" aria-hidden="true"></i>
+        <i class="fa fa-chevron-right next" aria-hidden="true"></i>
+        <!--<img class="card-img-top" src="{% static 'core/media/javaScript.svg ' %}"-->
+        <div class="post-wrapper ">
+            <div class="post">1</div>
+            <div class="post">2</div>
+            <div class="post">3</div>
+            <div class="post">4</div>
+            <div class="post">5</div>
+        </div>
+    </div>
+
+</div>
+<div class="consulta-wrapper">
+    <div class="consulta">
+        <h1 class="slide-title">Atenciones</h1>
+        <hr> 
+        <div class="row">
+            <div class="col alt" style="background-color: #33CCCC;height: 70vh; ">
+                <div style="display: flex;">
+                    <img src="./../../static/img/servicio-al-cliente.svg" alt="services" class="imagen">
+                </div>
+                <p class="title-img">Atencion</p>
+                
+            </div>   
+            <div class="col alt" style="background-color: #996699;height: 70vh;">
+                <div style="display: flex;">
+                <img src="./../../static/img/reclamacion.svg" alt="reclamo"class="imagen"> 
+            </div>
+            <p class="title-img">Reclamos</p>   
+            </div>
+        </div> 
+    </div>
+<div>assssssss</div>
+
+
+</div>
+   
+{% endblock %}
