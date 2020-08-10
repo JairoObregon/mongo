@@ -64,7 +64,7 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{% url 'lista_clientes' %}" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 CLIENTES
@@ -81,21 +81,27 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="l" class="nav-link">
+                <a href="{% url 'lista_reclamos' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>EN ESPERA</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="l" class="nav-link">
+                <a href="{% url 'respondido' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ATENDIDAS</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="l" class="nav-link">
+                <a href="{% url 'excedido' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>EXCEDIDO</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="{% url 'reclamos_questions' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Preguntas</p>
                 </a>
               </li>
               
@@ -128,7 +134,22 @@
                   <p>EXCEDIDO</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{% url 'planes' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>PLANES</p>
+                </a>
+              </li>
             </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="{% url 'logout' %}" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                SALIR
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
           </li>
         </ul>
       </nav>

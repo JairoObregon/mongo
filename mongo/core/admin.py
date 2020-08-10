@@ -1,14 +1,22 @@
 from django.contrib import admin
-from .models import Answer,Question,Claim
+from .models import modelQuestions,Claim,plan
 # Register your models here.
 
-class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('answer', )
+
 
 
 class ClaimAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
-admin.site.register(Answer, AnswerAdmin)
+
+class modelQuestionsAdmin(admin.ModelAdmin):
+    list_display = ('_id', )
+
+
+class planAdmin(admin.ModelAdmin):
+    list_display = ('_id', )
+
 
 admin.site.register(Claim, ClaimAdmin)
+admin.site.register(modelQuestions, modelQuestionsAdmin)
+admin.site.register(plan, planAdmin)

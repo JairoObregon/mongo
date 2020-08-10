@@ -1,0 +1,26 @@
+{% extends 'gestion/index.html' %}
+{% block content %}
+<div class="container">
+    <table class="table">
+        <a href="" type="button" class="btn btn-primary float-right" style="text-decoration: none; margin-bottom: 20px; ;">Nuevo plan</a>
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">plan</th>
+            <th scope="col">precio</th>
+        </thead>
+        <tbody>
+         
+            {% for a in planes %}
+              <tr>
+                  <th scope="row">{{a.pk}}</th>
+                  <td>{{a.tittle}}</td>
+                  <td>{{a.price}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+      </table>
+</div>
+
+{% endblock content %}

@@ -16,14 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core import views as core_views
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', core_views.index),
-    path('gestor/', core_views.admnistrador),
-    path('gestor/clients', core_views.client),
-    path('solicitudes/', core_views.solicitudes),
-    path('reclamos', core_views.reclamos),
+    path('', core_views.index,name="home"),
+    path('gestor/', core_views.admnistrador, name="gestion"),
+    path('gestor/lista_clientes', core_views.client, name="lista_clientes"),
+    path('gestor/lista_reclamos', core_views.on_hold, name="lista_reclamos"),
+    path('gestor/lista_reclamos/<slug:pk>', core_views.reclamo, name="rpta_ereclamo"),
+    path('solicitudes/', core_views.solicitudes,name="solicitud"),
+    path('reclamos', core_views.reclamos,name="reclamo"),
+    path('gestor/lista_reclamos_respondido', core_views.reclamos_respondido,name="respondido"),
+    path('gestor/lista_reclamos_excedido', core_views.reclamos_excedido,name="excedido"),
+    path('gestor/lista_preguntas_reclamos', core_views.reclamos_questions,name="reclamos_questions"),
+    path('gestor/planes', core_views.planess,name="planes"),
+    path('login/', core_views.login.as_view(),name="login"),
+    path('logout/', core_views.logout.as_view(),name="logout"),
 
-]
+
+
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

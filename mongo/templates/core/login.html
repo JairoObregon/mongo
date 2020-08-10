@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+</head>
+<body>
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button class="toggle-btn" onclick="login()">Log in</button>
+                <button class="toggle-btn" onclick="register()">Register</button>
+            </div>
+            
+            <form id="login" class="input-group" method="POST" action="{% url 'login' %}"> 
+                {% csrf_token %}
+                {% if form.errors %}
+                <div class="invalid-feedback">
+                   Creedenciales invalidas..
+                </div>
+                {% endif %}
+                <input type="text" class="input-field" placeholder="User " name="username" required>
+                <input type="password" class="input-field" placeholder="Password " name="password" required>
+                <button type="submit" class="submit-btn">Ingresar</button>
+
+            </form>
+            <form id="register"class="input-group">
+                <input type="text" class="input-field" placeholder="User " required>
+                <input type="text" class="input-field" placeholder="User " required>
+                <input type="text" class="input-field" placeholder="User " required>
+                <input type="password" class="input-field" placeholder="Password " required>
+               <!-- <input type="checkbox" class="check-box"><span>AAA</span>--> 
+                <button type="submit" class="submit-btn">Log ian</button>
+
+            </form>
+        </div>
+    </div>
+<script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
+    function register(){
+        x.style.left = "-400px";
+        y.style.left = "33px";
+        z.style.left = "100px";
+    }
+    function login(){
+        x.style.left = "33px";
+        y.style.left = "400px";
+        z.style.left = "0px";
+    }
+</script>    
+    
+</body>
+</html>

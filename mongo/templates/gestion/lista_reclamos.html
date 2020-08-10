@@ -1,0 +1,47 @@
+{% extends 'gestion/index.html' %}
+{% block content %}
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Email</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Prioridad</th>
+            <th scope="col">¿Respondido?</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+            {% for claim in claims  %}
+            <tr>
+                <th scope="row">{{claim.pk}}</th>
+                <td>{{claim.dni}}</td>
+                <td>{{claim.email}}</td>
+                <td>{{claim.name}}</td>
+                <td><div class="circle" style="width: 50px;
+                  height: 50px;
+                  {% if claim.priority <= 3 %}
+                   background: rgb(57, 218, 250);
+                  {% elif claim.priority <= 6 %}
+                  background: rgb(251, 247, 3);
+                  {% elif claim.priority <= 9 %}
+                  background: rgb(251, 112, 42);
+                  {% else  %}
+                  background: rgb(251, 15, 3);
+                  {% endif %}
+               
+                  border-radius: 50%;"></div></td>
+                <td>{{claim.state}}</td>
+                <td><a href="{% url 'rpta_ereclamo' claim.pk%}"  class="btn btn-success">Ver</a></td>
+          </tr>
+
+            {% endfor %}
+            
+        </tbody>
+      </table>
+</div>
+
+{% endblock content %}

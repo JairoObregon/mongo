@@ -1,0 +1,26 @@
+{% extends 'gestion/index.html' %}
+{% block content %}
+<div class="container">
+    <table class="table">
+        <a href="" type="button" class="btn btn-primary float-right" style="text-decoration: none; margin-bottom: 20px; ;">Nueva pregunta</a>
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Peso</th>
+        </thead>
+        <tbody>
+         
+            {% for obj in reclamos_questions  %}
+            <tr>
+                <th scope="row">{{obj.pk}}</th>
+                <td>{{obj.question}}</td>
+                <td>{{obj.weighted}}</td>
+          </tr>
+            {% endfor %}
+            
+        </tbody>
+      </table>
+</div>
+
+{% endblock content %}
