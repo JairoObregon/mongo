@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles_state.css' %}">
     <title>Document</title>
 </head>
 
@@ -141,6 +142,34 @@
   ]
 });
 
+</script>
+
+<script >
+        function mostrarIngreso(){
+            document.getElementById('1').classList.add('activado')
+            document.getElementById('2').classList.remove('activado')
+            document.getElementById('3').classList.remove('activado')
+            document.getElementById('Ingreso').classList.add('caja_activada')
+            document.getElementById('Proceso').classList.remove('caja_activada')
+            document.getElementById('Rpta').classList.remove('caja_activada')
+        }
+        function mostrarEstado(){
+            document.getElementById('1').classList.remove('activado')
+            document.getElementById('2').classList.add('activado')
+            document.getElementById('3').classList.remove('activado')
+            document.getElementById('Ingreso').classList.remove('caja_activada')
+            document.getElementById('Proceso').classList.add('caja_activada')
+            document.getElementById('Rpta').classList.remove('caja_activada')
+        }
+  
+        function mostrarRpta(){
+            document.getElementById('1').classList.remove('activado')
+            document.getElementById('2').classList.remove('activado')
+            document.getElementById('3').classList.add('activado')
+            document.getElementById('Ingreso').classList.remove('caja_activada')
+            document.getElementById('Proceso').classList.remove('caja_activada')
+            document.getElementById('Rpta').classList.add('caja_activada')
+        }
 </script>
   </body>
 </html>

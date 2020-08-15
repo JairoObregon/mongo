@@ -35,6 +35,8 @@ urlpatterns = [
     path('gestor/legal', core_views.legal,name="legal"),
     path('login/', core_views.login.as_view(),name="login"),
     path('logout/', core_views.logout.as_view(),name="logout"),
+    path('state/<slug:dni>', core_views.state,name="state"),
+    path('template_state/', core_views.template_state,name="template_state"),
 
 
 

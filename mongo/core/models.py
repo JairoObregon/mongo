@@ -26,12 +26,11 @@ class Claim(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=200)
     message = models.TextField(null=True,blank=True)
-    files = models.FileField(upload_to='documents')
-    priority = models.IntegerField(null=True,blank=True)
+    files = models.FileField(upload_to='documents', null=True,blank=True)
+    priority = models.IntegerField() #Se calcula de cuaerdo a los reclamos
     rpta = models.BooleanField(default=False)
     state  = models.IntegerField() #1 recibido  2 legal 3 respuesta
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
     questions = models.ArrayField( model_container = Question ,null=True,blank=True )
     answers = models.EmbeddedField( model_container = Answer, null=True,blank=True )
     objects = models.DjongoManager()

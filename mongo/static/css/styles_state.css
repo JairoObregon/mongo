@@ -1,0 +1,28 @@
+.marco{
+border: 2px solid #86E1C5;
+text-align: center;
+padding: 0PX;
+}
+
+.caja{
+    border: 2px solid #86E1C5;
+    height: 200px;
+    display: none;
+}
+.caja_activada{
+    display: flex;
+    height: auto;
+}
+
+.boton_estado{
+    width: 100%;
+    margin: 0px;
+    border: none;
+    background-color: white;
+    outline: none;
+    box-shadow: none;
+    cursor:pointer;
+}
+.activado{
+    background-color: red;
+}

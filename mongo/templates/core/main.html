@@ -23,7 +23,7 @@
         <h1 class="slide-title">Atenciones</h1>
         <hr> 
         <div class="row">
-            <a class="col " href="{% url 'solicitud' %}" style="margin: 0px; padding: 0px; text-decoration: none;">
+            <a class="col-4 " href="{% url 'solicitud' %}" style="margin: 0px; padding: 0px; text-decoration: none;">
             <div  style="background-color: #33CCCC;height: 70vh; ">
                 <div style="display: flex;">
                     <img src="./../../static/img/servicio-al-cliente.svg" alt="services" class="imagen">
@@ -32,12 +32,20 @@
                 
             </div> 
             </a >  
-            <a class="col "  href="{% url 'reclamo' %}" style="margin: 0px; padding: 0px; text-decoration: none;">
+            <a class="col-4 "  href="{% url 'reclamo' %}" style="margin: 0px; padding: 0px; text-decoration: none;">
             <div style="background-color: #996699;height: 70vh;">
                 <div style="display: flex;">
                 <img src="./../../static/img/reclamacion.svg" alt="reclamo"class="imagen"> 
             </div>
             <p class="title-img">Reclamos</p>   
+            </div>
+            </a>
+             <a class="col-4 "  href="{% url 'template_state' %}" style="margin: 0px; padding: 0px; text-decoration: none;">
+            <div style="background-color: #F064DD;height: 70vh;">
+                <div style="display: flex;">
+                <img src="./../../static/img/reclamacion.svg" alt="reclamo"class="imagen"> 
+            </div>
+            <p class="title-img">Estado</p>   
             </div>
             </a>
         </div> 

@@ -1,0 +1,92 @@
+{% extends 'core/index.html' %}
+{% load static %}
+{% block content %}
+<h2 style="text-align: center;margin-top: 50px;">Estado de solicitud</h2>
+ <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col marco ">
+                <button id="1" class="boton_estado activado" onclick="mostrarIngreso()" > Ingreso</button> 
+            </div>
+            <div class="col marco ">
+                <button id="2"  class="boton_estado" onclick="mostrarEstado()" > Proceso</button> 
+            </div>
+            <div class="col marco ">
+                <button  id="3"  class="boton_estado" onclick="mostrarRpta()" > Rpta</button> 
+            </div>
+        </div>
+        <div id="Ingreso" class="row caja caja_activada">
+            {% for a in data %}
+                {% if a.state == 1  %}
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        <h4>Reclamos</h4>
+                        <p>{{a.dni}}</p>
+                        <p>{{a.email}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% for b in data1 %}
+                {% if b.state == 1  %}
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        <h4>Solicitudes</h4>
+                        <p>{{a.dni}}</p>
+                        <p>{{a.email}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            
+        </div>
+        <div id="Proceso" class="row caja">
+            {% for a in data %}
+                {% if a.state == 2  %}
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        <h4>Reclamos</h4>
+                        <p>{{a.dni}}</p>
+                        <p>{{a.email}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% for b in data1 %}
+                {% if b.state == 2  %}
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        <h4>Solicitudes</h4>
+                        <p>{{a.dni}}</p>
+                        <p>{{a.email}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div id="Rpta" class="row caja">
+            {% for a in data %}
+                {% if a.state == 3  %}
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        <h4>Reclamos</h4>
+                        <p>{{a.dni}}</p>
+                        <p>{{a.email}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% for b in data1 %}
+                {% if b.state == 3  %}
+                <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        <h4>Solicitudes</h4>
+                        <p>{{a.dni}}</p>
+                        <p>{{a.email}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+   
+{% endblock %}

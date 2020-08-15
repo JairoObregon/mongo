@@ -18,10 +18,13 @@ def index(request):
 def admnistrador(request):
     return render(request, 'gestion/index.html')
 
+
+#client list
 @login_required
 def client(request):
     return render(request, 'gestion/lista_clientes.html')
 
+#claim list unanswered
 @login_required
 def on_hold(request):
     data = Claim.objects.filter(rpta=False, state=1)
@@ -33,32 +36,37 @@ def on_hold(request):
         return redirect('gestion')
     return render(request, 'gestion/lista_reclamos.html', {'claims' : data})
 
+#claim list derived to the legal area
 @login_required
 def legal(request):
     data = Claim.objects.filter(rpta=False, state=2)
     return render(request, 'gestion/legal.html', {'claims' : data})
 
+#claim list days exceeded 
 @login_required
 def reclamos_excedido(request):
     data = Claim.objects.filter( created__gte=datetime.now()-timedelta(days=1))
-    return render(request, 'gestion/lista_reclamos.html', {'claims' : data})
+    return render(request, 'gestion/lista_reclamos_excedido.html', {'claims' : data})
 
+#claim list answered
 @login_required
 def reclamos_respondido(request):
     data = Claim.objects.filter( rpta=True)
-    return render(request, 'gestion/lista_reclamos.html', {'claims' : data})
+    return render(request, 'gestion/lista_relclamos_contestado.html', {'claims' : data})
 
+#questions list
 @login_required
 def reclamos_questions(request):
     data = modelQuestions.objects.all()
     return render(request, 'gestion/tipo_pregunta.html', {'reclamos_questions' : data})
 
-
+#plan list
 @login_required
 def planess(request):
     data = plan.objects.all()
     return render(request, 'gestion/plan.html', {'planes' : data})
 
+#specific claim
 @login_required
 def reclamo(request, pk):
     data = Claim.objects.get(pk=ObjectId(pk))
@@ -91,7 +99,7 @@ def reclamo(request, pk):
 
 
 
-
+#form Claim
 def reclamos(request):
     
     data = modelQuestions.objects.all()
@@ -122,6 +130,8 @@ def reclamos(request):
 
     return render(request, 'core/reclamo.html', {'data' : data})
 
+
+#form Request
 def solicitudes(request):
 
     data = plan.objects.all()
@@ -140,9 +150,52 @@ def solicitudes(request):
     return render(request, 'core/solicitud.html', {'data' : data})
 
 
+
+#client Request unanswered
+@login_required
+def on_hold_plan(request):
+    data = Request.objects.filter( rpta=False)
+    return render(request, 'gestion/lista_atencion.html', {'data' : data})
+
+
+
+#client Request days exceeded 
+@login_required
+def atencion_excedido(request):
+    data = Request.objects.filter( created__gte=datetime.now()-timedelta(days=1))
+    return render(request, 'gestion/lista_atencion_excedido.html', {'data' : data})
+
+#claim list answered
+@login_required
+def atencion_respondido(request):
+    data = Request.objects.filter( rpta=True)
+    return render(request, 'gestion/lista_atencion_contestado.html', {'data' : data})
+
+
+
+#login
 class login(authh.LoginView):
     redirect_authenticated_user = True
     template_name = 'core/login.html'
 
+#logout
 class logout(authh.LogoutView):
     template_name = 'core/logout.html'
+
+#State claim or request
+def state(request,dni):
+    data = Claim.objects.filter(dni=dni)
+    data1 = Request.objects.filter(dni=dni)
+    return render(request, 'core/state.html', {'data' : data,'data1' : data1 })
+
+
+#form State 
+def template_state(request):
+    if request.method == "POST":
+            data = request.POST.get('dni')
+            if(Claim.objects.filter(dni=data) or Request.objects.filter(dni=data)):
+                return redirect('state', dni=data)
+            else:
+                return redirect('/template_state/?error')
+    return render(request, 'core/template_state.html')
+    
