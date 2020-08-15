@@ -32,10 +32,14 @@ urlpatterns = [
     path('gestor/lista_reclamos_excedido', core_views.reclamos_excedido,name="excedido"),
     path('gestor/lista_preguntas_reclamos', core_views.reclamos_questions,name="reclamos_questions"),
     path('gestor/planes', core_views.planess,name="planes"),
+    path('gestor/legal', core_views.legal,name="legal"),
     path('login/', core_views.login.as_view(),name="login"),
     path('logout/', core_views.logout.as_view(),name="logout"),
 
 
 
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

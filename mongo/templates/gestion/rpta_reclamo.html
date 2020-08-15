@@ -30,11 +30,15 @@
     </div>
     <div class="col">
       <h2 style="text-align: center;margin-bottom: 50px;">RESPUESTA AL SOLICITANTE</h2>
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
           <label for="exampleInputEmail1">Respuesta</label>
-          <input type="text" class="form-control" placeholder="DNI" name="respuesta" >
+          <textarea class="form-control" rows="5" name="respuesta" ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Archivo</label>
+          <input type="file" class="form-control-file" name="files">
         </div>
 
          <div class="form-group row ">

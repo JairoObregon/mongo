@@ -5,6 +5,9 @@ from bson.objectid import ObjectId
 from datetime import datetime, timedelta
 from django.contrib.auth import views as authh
 from django.contrib.auth.decorators import login_required
+import datetime
+#email
+from django.core.mail import EmailMessage
 
 
 # Create your views here.
@@ -21,8 +24,19 @@ def client(request):
 
 @login_required
 def on_hold(request):
-    data = Claim.objects.all()
+    data = Claim.objects.filter(rpta=False, state=1)
+    if request.method == "POST":
+        pk = request.POST.get('object')
+        dat = Claim.objects.get(pk=ObjectId(pk))
+        dat.state = 2
+        dat.save()
+        return redirect('gestion')
     return render(request, 'gestion/lista_reclamos.html', {'claims' : data})
+
+@login_required
+def legal(request):
+    data = Claim.objects.filter(rpta=False, state=2)
+    return render(request, 'gestion/legal.html', {'claims' : data})
 
 @login_required
 def reclamos_excedido(request):
@@ -31,7 +45,7 @@ def reclamos_excedido(request):
 
 @login_required
 def reclamos_respondido(request):
-    data = Claim.objects.filter( state=True)
+    data = Claim.objects.filter( rpta=True)
     return render(request, 'gestion/lista_reclamos.html', {'claims' : data})
 
 @login_required
@@ -50,14 +64,28 @@ def reclamo(request, pk):
     data = Claim.objects.get(pk=ObjectId(pk))
     if request.method == "POST":
         rpta = request.POST.get('respuesta')
+        files = request.FILES['files']
         data.answers= {
-        'answer': 'rpta',
-        'files' : '',
-        'created': '2020-08-07T22:51:25.522+00:00'
+        'answer': rpta,
+        'files' : files,
+        'created': datetime.datetime.now()
         }
-        data.state = True
+        data.state=3
+        data.rpta = True
         data.save()
+
+        email = EmailMessage(
+              
+                subject='mongodb',
+                body=rpta  ,
+                from_email=data.email,
+                to=['kayn.g4@gmail.com']
+            )
+        email.attach('invoicex.pdf', files.read() , 'application/pdf')
+        email.content_subtype = 'html'
+        email.send()
         return redirect('home')
+
 
     return render(request, 'gestion/rpta_reclamo.html', {'claims' : data})
 
@@ -73,7 +101,6 @@ def reclamos(request):
             claim.email = request.POST.get('email')
             claim.name = request.POST.get('nombre')
             preguntas = request.POST.getlist('caja')
-            print(preguntas)
             claim.questions=[]
             data1= 0
             for p in preguntas:
@@ -88,6 +115,8 @@ def reclamos(request):
                 claim.questions.append(dic)
             
             claim.priority = data1
+            claim.files=request.FILES['filesS']
+            claim.state=1
             claim.save()
             return redirect('home')
 
@@ -102,7 +131,8 @@ def solicitudes(request):
             req.email = request.POST.get('email')
             req.name = request.POST.get('nombre')
             req.plan = request.POST.get('radio')     
-            req.coin = request.POST.get('moneda')  
+            req.coin = request.POST.get('moneda')
+          
             req.save()
             return redirect('home')
 

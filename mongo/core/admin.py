@@ -5,8 +5,7 @@ from .models import modelQuestions,Claim,plan
 
 
 
-class ClaimAdmin(admin.ModelAdmin):
-    list_display = ('name', )
+
 
 
 class modelQuestionsAdmin(admin.ModelAdmin):
@@ -17,6 +16,6 @@ class planAdmin(admin.ModelAdmin):
     list_display = ('_id', )
 
 
-admin.site.register(Claim, ClaimAdmin)
+admin.site.register(Claim)
 admin.site.register(modelQuestions, modelQuestionsAdmin)
 admin.site.register(plan, planAdmin)

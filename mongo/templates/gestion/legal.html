@@ -34,14 +34,7 @@
                   {% endif %}
                   border-radius: 50%;"></div></td>
                 <td>{{claim.rpta}}</td>
-                <td><a href="{% url 'rpta_ereclamo' claim.pk%}"  class="btn btn-success">Ver</a>
-                  <form  method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" class="form-control-file" name="object" value={{claim.pk}}>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                  </form>
-                  
-                </td>
+                <td><a href="{% url 'rpta_ereclamo' claim.pk%}"  class="btn btn-success">Ver</a></td>
           </tr>
 
             {% endfor %}

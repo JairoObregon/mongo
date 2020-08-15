@@ -134,11 +134,19 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL='/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media'),
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-LOGIN_REDIRECT_URL = '/'
+
 
 LOGIN_URL = 'login'
 
 LOGOUT_REDIRECT_URL = '/'
 
+UPLOADED_FILES_USE_URL = True
+BASE_URL= 'http://127.0.0.1:8000/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'kayn.g4@gmail.com'
+EMAIL_HOST_PASSWORD = 'unmsm123456'
+EMAIL_PORT = 587
